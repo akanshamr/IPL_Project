@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Reports for the season selected</h2>
+
+<form action = "{% url 'ipl_report:report' %}" method="post">
+{%  csrf_token %}
+<select id="" name="season" class="form-control">
+{% for item in seasons %}
+    <option value="{{ item }}">{{ item }}</option>
+{% endfor %}
+</select>
+<input type="submit" value="Submit">
+<h4>**Report for season {{ season }} **</h4>
+<h4>Top 4 teams in terms of wins</h4>
+{% for item in top_teams %}
+    <p>{{ item }}</p>
+{% endfor %}
+<h4> Team that won the most number of tosses in the season</h4>
+<p>{{ toss_winner }}</p>
+<h4>The player who won the maximum number of Player of the Match awards</h4>
+<p>{{ player_of_match }}</p>
+<h4>The team which won max matches in the whole season</h4>
+<p>{{ max_won_team }}</p>
+<h4>The location having the most number of wins for the top team</h4>
+<p>{{ max_win_location }}</p>
+<h4>Percentage of teams decided to bat when they won the toss</h4>
+<p>{{ percent_of_team_decided_to_bat }}</p>
+<h4>The team won by the highest margin of runs  for the season</h4>
+<p>{{ highest_margin_run_team }}</p>
+<h4>The team won by the highest number of wickets for the season</h4>
+<p>{{ team_won_by_highest_wickets }}</p>
+
+</form>
+</body>
+</html>

@@ -53,7 +53,7 @@ def analyse(season):
 
 
 def report(request):
-    season = request.POST['season']
+    season = request.GET.get('season', '2017')
     context = analyse(int(season))
     context['season'] = season
     return render(request, template_name='report.html', context=context, )

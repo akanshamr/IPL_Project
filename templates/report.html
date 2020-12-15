@@ -1,40 +1,102 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>IPL Reports {{ season }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <meta name="title" content="IPL Reports {{ season }}" />
+    <meta name="description" content="IPL Reports {{ season }}" />
 </head>
 <body>
-<h2>Reports for the season selected</h2>
-
-<form action = "{% url 'ipl_report:report' %}" method="post">
-{%  csrf_token %}
-<select id="" name="season" class="form-control">
-{% for item in seasons %}
-    <option value="{{ item }}">{{ item }}</option>
-{% endfor %}
-</select>
-<input type="submit" value="Submit">
-<h4>**Report for season {{ season }} **</h4>
-<h4>Top 4 teams in terms of wins</h4>
-{% for item in top_teams %}
-    <p>{{ item }}</p>
-{% endfor %}
-<h4> Team that won the most number of tosses in the season</h4>
-<p>{{ toss_winner }}</p>
-<h4>The player who won the maximum number of Player of the Match awards</h4>
-<p>{{ player_of_match }}</p>
-<h4>The team which won max matches in the whole season</h4>
-<p>{{ max_won_team }}</p>
-<h4>The location having the most number of wins for the top team</h4>
-<p>{{ max_win_location }}</p>
-<h4>Percentage of teams decided to bat when they won the toss</h4>
-<p>{{ percent_of_team_decided_to_bat }}</p>
-<h4>The team won by the highest margin of runs  for the season</h4>
-<p>{{ highest_margin_run_team }}</p>
-<h4>The team won by the highest number of wickets for the season</h4>
-<p>{{ team_won_by_highest_wickets }}</p>
-
-</form>
+<div class="jumbotron text-center">
+    <h2>IPL Report - {{ season }}</h2>
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <p>Reports for the season selected!</p>
+        </div>
+        <div class="col-md-4">
+            <form action="{% url 'ipl_report:report' %}" class="form-inline">
+                <select id="" name="season" class="form-control">
+                    {% for item in seasons %}<option value="{{ item }}">{{ item }}</option>{% endfor %}
+                </select>
+                <input type="submit" value="Submit" class="btn btn-sm btn-info" />
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <h2>Report for season {{ season }}</h2>
+            <img src="/static/p1.png" class="img img-hover w-100" alt="cover">
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-12">
+            <h4>Top 4 teams in terms of wins</h4>
+            <ol>
+                {% for item in top_teams %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+        <hr class="bordered" />
+        <div class="col-sm-12">
+            <h4>{{ toss_winner }}</h4>
+            <p>Team that won the most number of tosses in the season</p>
+        </div>
+        <hr />
+        <div class="col-sm-12">
+            <h4>{{ player_of_match }}</h4>
+            <p>The player who won the maximum number of Player of the Match awards</p>
+        </div>
+        <hr />
+        <div class="col-sm-12">
+            <h4>{{ max_won_team }}</h4>
+            <p>The team which won max matches in the whole season</p>
+        </div>
+        <hr />
+        <div class="col-sm-12">
+            <h4>{{ max_win_location }}</h4>
+            <p>The location having the most number of wins for the top team</p>
+        </div>
+        <hr />
+        <div class="col-sm-8">
+            <img src="/static/p3.png" class="img img-hover w-100" alt="cover">
+        </div>
+        <div class="col-sm-4">
+        </div>
+        <hr />
+        <div class="col-sm-12">
+            <h4>{{ percent_of_team_decided_to_bat }}</h4>
+            <p>Percentage of teams decided to bat when they won the toss</p>
+        </div>
+        <hr />
+        <div class="col-sm-12">
+            <h4>{{ highest_margin_run_team }}</h4>
+            <p>The team won by the highest margin of runs  for the season</p>
+        </div>
+        <hr />
+        <div class="col-sm-12">
+            <h4>{{ team_won_by_highest_wickets }}</h4>
+            <p>The team won by the highest number of wickets for the season</p>
+        </div>
+        <hr />
+        <div class="col-sm-8">
+            <img src="/static/p4.png" class="img img-hover w-100" alt="cover">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+</div>
 </body>
 </html>
